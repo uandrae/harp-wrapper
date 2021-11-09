@@ -1,0 +1,24 @@
+#!/bin/bash
+
+EXP=heps_43h22_tg3
+EXP_USER=snh
+EXP_GROUP=se
+
+EXP=heps_43h211
+EXP_USER=fai
+EXP_GROUP=no
+
+YYMM=202105
+
+VFLD_WRK=$SCRATCH/vfld
+
+mkdir -p $VFLD_WRK/$EXP
+
+cd $VFLD_WRK/$EXP
+
+echo "Handle vfld files in $PWD"
+
+for F in $( find /hpc/perm/ms/$EXP_GROUP/$EXP_USER/HARMONIE/archive/$EXP/archive/extract/ -name "vfld${EXP}mbr???${YYMM}*.gz" ) ; do
+ echo " Unpack $F"
+ tar -zxf $F 
+done
