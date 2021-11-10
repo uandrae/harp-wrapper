@@ -2,13 +2,13 @@ library(harpIO)
 
 
 
-vfld_path       <- "/scratch/ms/spsehlam/hlam/vfld"
-first_fcst      <- 2021011312
-last_fcst       <- 2021012112
-
 vfld_path       <- "/scratch/ms/se/snh/vfld"
 first_fcst      <- 2021051912
 last_fcst       <- 2021052812
+
+vfld_path       <- "/scratch/ms/spsehlam/hlam/vfld"
+first_fcst      <- 2021011312
+last_fcst       <- 2021012112
 
 sqlite_path     <- "/scratch/ms/se/snh/harp/FCTABLE"
 sqlite_template <- "{eps_model}/{YYYY}/{MM}/FCTABLE_{parameter}_{YYYY}{MM}_{HH}.sqlite"

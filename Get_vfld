@@ -3,7 +3,7 @@
 if [ $USER == "snh" ] ; then
  loops="1 2"
 elif [ $USER == "hlam" ] ; then
- loops="3"
+ loops="4 3"
 fi
 
 
@@ -30,6 +30,13 @@ for loop in $loops ; do
    EXP=heps_43h22_tg3
    EXP_USER=fag
    EXP_GROUP=no
+   periods=202101
+   ;;
+
+  4)
+   EXP=heps_43h211
+   EXP_USER=fn7
+   EXP_GROUP=fi
    periods=202101
    ;;
 
