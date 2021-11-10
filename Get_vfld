@@ -1,24 +1,53 @@
 #!/bin/bash
 
-EXP=heps_43h22_tg3
-EXP_USER=snh
-EXP_GROUP=se
+if [ $USER == "snh" ] ; then
+ loops="1 2"
+elif [ $USER == "hlam" ] ; then
+ loops="3"
+fi
 
-EXP=heps_43h211
-EXP_USER=fai
-EXP_GROUP=no
 
-YYMM=202105
 
-VFLD_WRK=$SCRATCH/vfld
+for loop in $loops ; do
 
-mkdir -p $VFLD_WRK/$EXP
+ case $loop in
 
-cd $VFLD_WRK/$EXP
+  1)
+   EXP=heps_43h22_tg3
+   EXP_USER=snh
+   EXP_GROUP=se
+   periods=202105
+   ;;
 
-echo "Handle vfld files in $PWD"
+  2)
+   EXP=heps_43h211
+   EXP_USER=fai
+   EXP_GROUP=no
+   periods=202105
+   ;;
 
-for F in $( find /hpc/perm/ms/$EXP_GROUP/$EXP_USER/HARMONIE/archive/$EXP/archive/extract/ -name "vfld${EXP}mbr???${YYMM}*.gz" ) ; do
- echo " Unpack $F"
- tar -zxf $F 
+  3)
+   EXP=heps_43h22_tg3
+   EXP_USER=fag
+   EXP_GROUP=no
+   periods=202101
+   ;;
+
+ esac
+
+ for YYMM in $periods ; do
+   VFLD_WRK=$SCRATCH/vfld
+
+   mkdir -p $VFLD_WRK/$EXP
+
+   cd $VFLD_WRK/$EXP
+
+   echo "Handle vfld files in $PWD"
+
+   for F in $( find /hpc/perm/ms/$EXP_GROUP/$EXP_USER/HARMONIE/archive/$EXP/archive/extract/ -name "vfld${EXP}mbr???${YYMM}*.gz" ) ; do
+    echo " Unpack $F"
+    tar -zxf $F 
+   done
+ done
+
 done

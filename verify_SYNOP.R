@@ -3,8 +3,9 @@ library(harpPoint)
 
 params          <- c("Pmsl","T2m","S10m","RH2m","vis","Q2m",
                      "CCtot","CClow","Cbase",
-                     "Td2m","Tmax","Tmin",
-                     "AccPcp1h","AccPcp3h","AccPcp6h","AccPcp12h")
+                     "Td2m",
+                     #"Gmax","Tmax","Tmin","AccPcp1h",
+                     "AccPcp3h","AccPcp6h","AccPcp12h")
 
 thresholds <- list(
  

@@ -1,17 +1,28 @@
 library(harpIO)
 
+
+
+vfld_path       <- "/scratch/ms/spsehlam/hlam/vfld"
+first_fcst      <- 2021011312
+last_fcst       <- 2021012112
+
 vfld_path       <- "/scratch/ms/se/snh/vfld"
+first_fcst      <- 2021051912
+last_fcst       <- 2021052812
+
 sqlite_path     <- "/scratch/ms/se/snh/harp/FCTABLE"
 sqlite_template <- "{eps_model}/{YYYY}/{MM}/FCTABLE_{parameter}_{YYYY}{MM}_{HH}.sqlite"
 
-first_fcst      <- 2021052012
-last_fcst       <- 2021052612
-
 fcst_freq       <- "24h"
-fcst_models     <- c("heps_43h211")
-fcst_members    <- list(heps_43h211 = c(0,1,2,3,4,5,6))
-#fcst_lags       <- list(prod_SPP_defpert_43h2_2 =  paste0(c(0,0,0,0,0,0,0),"h"))
-fcst_lead_times <- seq(0, 48, 1)
+
+fcst_models     <- c("heps_43h22_tg3","heps_43h211")
+fcst_members    <- list()
+for ( model in fcst_models ) {
+ fcst_members <- append(fcst_members,list(seq(0,6,1)))
+}
+names(fcst_members) <- fcst_models
+
+fcst_lead_times <- seq(0, 48, 3)
 
 read_eps_interpolate(
  start_date=first_fcst,
@@ -26,4 +37,3 @@ read_eps_interpolate(
  sqlite_path=sqlite_path,
  sqlite_template = sqlite_template
 )
- #lags=fcst_lags,
