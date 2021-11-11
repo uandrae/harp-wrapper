@@ -1,3 +1,4 @@
+library(harpIO)
 library(harpPoint)
 
 thresholds <- list(
