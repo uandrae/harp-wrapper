@@ -7,7 +7,6 @@
 date
 
 # Modules
-module load proj4
 module load R/4.0.4
 
 # Environment variables
@@ -25,7 +24,7 @@ export   END_DATE=2021012112
 
 export FCST_FREQ=24h
 export LEAD_TIME=48
-export FCST_MODELS="c('heps_43h22_tg3','heps_43h211')"
+export FCST_MODELS="heps_43h22_tg3, heps_43h211"
 
 # Run harp
 export TZ="GMT"
