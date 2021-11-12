@@ -23,10 +23,11 @@ meps_domain <- structure(
   class = "geodomain"
 )
 
-# Read observations (You will need to add your own path here - I use example data from the harpData package)
+# Read observations (You will need to add your own path here -
+# I'm using example data from the harpData package)
 oo <- harpData_info("obstable")
 
-param <- "T2m"
+param <- "AccPcp1h"
 
 obs <- read_point_obs(
   oo$start_date,
@@ -47,6 +48,9 @@ ggplot(obs, aes(validdate)) +
   labs(x = NULL, y = "Number of stations") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
+# to save use:
+# ggsave("filename.png")
+
 # Plot stations on a map
 map_poly  <- get_map(dom = meps_domain)
 obs_count <- summarize(group_by(obs, SID, x, y), Count = n())
@@ -60,7 +64,11 @@ ggplot(obs_count, aes(x, y)) +
     colors = brewer.pal(9, "YlOrRd"),
     breaks = pretty(obs_count$Count, 10)
   ) +
-  coord_equal(xlim = range(obs$x), ylim = range(obs$y), expand = FALSE) +
+  coord_equal(
+    xlim = c(DomainExtent(meps_domain)$x0, DomainExtent(meps_domain)$x1),
+    ylim = c(DomainExtent(meps_domain)$y0, DomainExtent(meps_domain)$y1),
+    expand = FALSE
+  ) +
   theme_bw() +
   theme(
     axis.title = element_blank(),
@@ -73,4 +81,6 @@ ggplot(obs_count, aes(x, y)) +
     subtitle = paste(range(obs$validdate), collapse = " - ")
   )
 
+# to save use:
+# ggsave("filename.png")
 
