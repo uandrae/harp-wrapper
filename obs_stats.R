@@ -65,8 +65,8 @@ ggplot(obs_count, aes(x, y)) +
     breaks = pretty(obs_count$Count, 10)
   ) +
   coord_equal(
-    xlim = c(DomainExtent(meps_domain)$x0, DomainExtent(meps_domain)$x1),
-    ylim = c(DomainExtent(meps_domain)$y0, DomainExtent(meps_domain)$y1),
+    xlim   = c(DomainExtent(meps_domain)$x0, DomainExtent(meps_domain)$x1),
+    ylim   = c(DomainExtent(meps_domain)$y0, DomainExtent(meps_domain)$y1),
     expand = FALSE
   ) +
   theme_bw() +
