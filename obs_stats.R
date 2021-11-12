@@ -27,7 +27,7 @@ meps_domain <- structure(
 # I'm using example data from the harpData package)
 oo <- harpData_info("obstable")
 
-param <- "AccPcp1h"
+param <- "T2m"
 
 obs <- read_point_obs(
   oo$start_date,
@@ -52,7 +52,7 @@ ggplot(obs, aes(validdate)) +
 # ggsave("filename.png")
 
 # Plot stations on a map
-map_poly  <- get_map(dom = meps_domain)
+map_poly  <- get_map("world", dom = meps_domain)
 obs_count <- summarize(group_by(obs, SID, x, y), Count = n())
 ggplot(obs_count, aes(x, y)) +
   geom_polygon(
