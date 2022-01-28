@@ -54,8 +54,8 @@ for ( param in params ) {
 
  fcst <- join_to_fcst(fcst, obs) %>% check_obs_against_fcst(param)
 
- if ( is.null(thresholds[[param]]) ) {
-  thresholds_=thresholds=thresholds[[param]]
+ if ( ! is.null(thresholds[[param]]) ) {
+  thresholds_=thresholds[[param]]
  } else {
   thresholds_=quantile(obs[[param]],quantiles)
  }
